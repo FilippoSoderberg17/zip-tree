@@ -35,3 +35,10 @@ This implementation is a set, not a multiset: inserting a key that already exist
 - When ranks tie (common under `maxRank: 1`), the existing node wins and the tree degenerates toward an insertion-order chain. The BST invariant still holds; the depth invariant does not. Pass a real `rand` for production trees.
 - Iteration is in-order and ascending per the supplied `compare`. The default comparator assumes numeric keys and will not do what you want for strings unless you pass `compare: (a, b) => a < b ? -1 : a > b ? 1 : 0`.
 - The default RNG is `Math.random` and is **not** seeded. Inject a `rand` function (the tests use a seeded LCG) if you need reproducible trees.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
