@@ -1,6 +1,6 @@
 {
   "name": "zip-tree",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Maintains an ordered collection using randomized ranks with simpler insertion and deletion than treaps.",
   "type": "module",
   "main": "src/index.js",
